@@ -1,23 +1,33 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+  <div id='app'>
+    <Hero id='hero'/>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app',
-};
+  import Hero from './components/Hero';
+
+  export default {
+    name: 'app',
+    components: {
+      Hero,
+    },
+  };
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import '~animate.css';
+</style>
+
+<style lang='sass'>
+  @import url('https://fonts.googleapis.com/css?family=Raleway')
+  @import url(https://fonts.googleapis.com/css?family=Montserrat:700)
+  @import url('https://fonts.googleapis.com/css?family=Anton')
+
+  $family-primary: 'Raleway', sans-serif
+  $primary: rgb(30, 53, 138)
+
+  // Import Bulma and Buefy styles
+  @import "~bulma"
+  @import "~buefy/src/scss/buefy"
 </style>
