@@ -22,7 +22,7 @@
     </div>
     <div class='hero-footer'>
       <button class='button is-large is-white is-outlined'>
-        <b-icon icon='keyboard_arrow_down' size='is-large' />
+        <b-icon icon='keyboard_arrow_down' size='is-large' v-scroll-to="'#what'" />
       </button>
     </div>
   </section>

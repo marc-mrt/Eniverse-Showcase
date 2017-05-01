@@ -1,16 +1,19 @@
 <template>
   <div id='app'>
     <Hero id='hero'/>
+    <What id='what' />
   </div>
 </template>
 
 <script>
   import Hero from './components/Hero';
+  import What from './components/What';
 
   export default {
     name: 'app',
     components: {
       Hero,
+      What,
     },
   };
 </script>
