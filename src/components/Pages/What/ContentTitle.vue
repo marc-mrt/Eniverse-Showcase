@@ -20,6 +20,6 @@
   }
 
   h2 {
-    margin-top: 5rem;
+    margin-top: 2rem;
   }
 </style>

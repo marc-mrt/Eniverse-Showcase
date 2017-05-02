@@ -26,8 +26,19 @@
   .details {
     &:hover {
       background-color: rgba(0, 0, 0, 0.05);
+      .notification {
+        background-color: black;
+      }
+      .title {
+        color: black;
+      }
       .desc {
         color: black;
+      }
+      .icon {
+        &:after {
+          color: black;
+        }
       }
     }
   }
