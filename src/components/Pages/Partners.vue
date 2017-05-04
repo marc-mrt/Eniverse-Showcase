@@ -1,10 +1,18 @@
 <template>
-  <page class='partners' :hasTitle='true'>
+  <page class='partners' hasTitle>
     <span slot='title'>Our <span class='titleColor'>partners</span></span>
-    <div slot='content' class='main'>
-      <div class='columns'>
-        <partner v-for='item in this.firstRow' :key='item.img' :image='item.img' :content='item.content'/>
+    <span slot='subtitle' class='weight'>These are some of the organisations that already trust us.</span>
+    <div slot='content'>
+      <div class='grid column is-8 is-offset-2'>
+        <div class='columns is-centered is-multiline'>
+          <partner v-for='item in this.partners' :key='item.img' :image='item.img' :content='item.content' />
+        </div>
       </div>
+      <button slot='content' class='button is-large is-primary is-outlined' v-scroll-to="{ element: '#hero', duration: 1000 }">
+        <span class='icon is-large'>
+          <i class='fa fa-angle-down'></i>
+        </span>
+      </button>
     </div>
   </page>
 </template>
@@ -19,12 +27,16 @@
       Page,
       Partner,
     },
+    methods: {
+      isFirst(img) {
+        return img === 'twitch.png';
+      },
+    },
     data() {
       return {
-        firstRow: [
+        partners: [
           {
             img: 'spotify.png',
-            content: 'prout',
           },
           {
             img: 'uber.png',
@@ -35,16 +47,14 @@
           {
             img: 'tf1.png',
           },
-        ],
-        secondRow: [
           {
             img: 'twitch.png',
           },
           {
-            img: 'monster.png',
+            img: 'deliveroo.png',
           },
           {
-            img: 'deliveroo.png',
+            img: 'monster.png',
           },
         ],
       };
@@ -54,10 +64,31 @@
 
 <style scoped>
   .partners {
+    padding-left: 3rem;
+    padding-right: 3rem;
     text-align: center;
+    background: url('~@/assets/interback2.png');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .grid {
+    margin-top: 1rem;
   }
 
   .titleColor {
     color: rgb(30, 53, 138);
+  }
+
+  button {
+    border-radius: 50%;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .weight {
+    font-weight: 700;
   }
 </style>

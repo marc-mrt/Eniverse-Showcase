@@ -24,20 +24,38 @@
 
 <style lang='scss' scoped>
   .details {
+    -webkit-transition: background-color 500ms linear;
+    -ms-transition: background-color 500ms linear;
+    transition: background-color 500ms linear;
     &:hover {
       background-color: rgba(0, 0, 0, 0.05);
+      -webkit-transition: color 500ms linear;
+      -ms-transition: color 500ms linear;
+      transition: color 500ms linear;
       .notification {
         background-color: black;
+        -webkit-transition: background-color 500ms linear;
+        -ms-transition: background-color 500ms linear;
+        transition: background-color 500ms linear;
       }
       .title {
         color: black;
+        -webkit-transition: color 500ms linear;
+        -ms-transition: color 500ms linear;
+        transition: color 500ms linear;
       }
       .desc {
         color: black;
+        -webkit-transition: color 500ms linear;
+        -ms-transition: color 500ms linear;
+        transition: color 500ms linear;
       }
       .icon {
         &:after {
           color: black;
+          -webkit-transition: color 500ms linear;
+          -ms-transition: color 500ms linear;
+          transition: color 500ms linear;
         }
       }
     }
@@ -58,7 +76,7 @@
     font-size: 1.2rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    color: white;
+    color: rgba(0, 0, 0, 0);
   }
 
   .tile {

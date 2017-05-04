@@ -1,10 +1,12 @@
 <template>
-  <page class='what' :hasTitle='true'>
+  <page class='what' hasTitle>
     <span slot='title'>We connect <span class='titleColor'>brands</span> with <span class='titleColor'>millenials</span></span>
-    <span slot='subtitle'>eSports are an innovative communication medium to build deep emotional bonding between a brand and its audience.</span>
+    <span slot='subtitle' class='weight'>eSports are an innovative communication medium to build deep emotional bonding between a brand and its audience.</span>
     <whatContent slot='content'></whatContent>
     <button slot='content' class='button is-large is-primary is-outlined' v-scroll-to="{ element: '#partners', duration: 1000 }">
-      <b-icon icon='keyboard_arrow_down' size='is-large' />
+      <span class='icon is-large'>
+        <i class='fa fa-angle-down'></i>
+      </span>
     </button>
   </page>
 </template>
@@ -27,6 +29,8 @@
     padding-left: 3rem;
     padding-right: 3rem;
     text-align: center;
+    background: white;
+    background-size: cover;
   }
 
   .titleColor {
@@ -36,5 +40,9 @@
   button {
     border-radius: 50%;
     margin-bottom: 3rem;
+  }
+
+  .weight {
+    font-weight: 700;
   }
 </style>

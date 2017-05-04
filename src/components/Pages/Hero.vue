@@ -1,8 +1,8 @@
 <template>
-  <page class='hero is-fullheight' :hasTitle='false'>
+  <page class='hero is-fullheight'>
       <div class='hero-body' slot='content'>
         <div class='container is-hidden-mobile'>
-          <img class='titleLogo' src='../../assets/logo.png' />
+          <img class='titleLogo' src='~@/assets/logo.png' />
           <h1 class='title'>
             Eniverse
           </h1>
@@ -11,7 +11,7 @@
           </h2>
         </div>
         <div class='container is-hidden-desktop'>
-          <img class='titleLogo' src='../../assets/logo.png' />
+          <img class='titleLogo' src='~@/assets/logo.png' />
           <h1 class='title'>
             Eniverse
           </h1>
@@ -22,7 +22,9 @@
       </div>
       <div class='hero-footer' slot='content'>
         <button class='button is-large is-white is-outlined' v-scroll-to="{ element: '#what', duration: 1000 }">
-          <b-icon icon='keyboard_arrow_down' size='is-large' />
+          <span class='icon is-large'>
+            <i class='fa fa-angle-down'></i>
+          </span>
         </button>
       </div>
   </page>
@@ -46,7 +48,8 @@
       rgba(0, 0, 0, 0.1),
       rgba(0, 0, 0, 0.6),
       rgba(0, 0, 0, 0.8)
-    ), url('../../assets/headback.png') no-repeat center center;
+    ), url('~@/assets/headback.png') no-repeat center center;
+    background-attachment: fixed;
     background-size: cover;
     text-align: center;
   }
@@ -88,6 +91,6 @@
 
   button {
     border-radius: 50%;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 </style>

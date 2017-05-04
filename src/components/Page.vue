@@ -18,7 +18,7 @@
     props: {
       hasTitle: {
         type: Boolean,
-        required: true,
+        default: false,
       },
     },
   };
@@ -27,7 +27,12 @@
 <style scoped>
   .page {
     width: 100%;
+    min-height: 100vh;
     padding-top: 5rem;
+  }
+
+  .super {
+    display: block;
   }
 
   .super .title {
@@ -40,6 +45,7 @@
   .super .subtitle {
     font-size: 1rem;
     font-family: 'Raleway', sans-serif;
+    font-weight: 700;
     letter-spacing: 1px;
   }
 

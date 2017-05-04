@@ -22,7 +22,7 @@
 </script>
 
 <style lang='sass'>
-  @import url('https://fonts.googleapis.com/css?family=Raleway')
+  @import url('https://fonts.googleapis.com/css?family=Raleway:400,700')
   @import url(https://fonts.googleapis.com/css?family=Montserrat:700)
   @import url('https://fonts.googleapis.com/css?family=Anton')
 
@@ -31,6 +31,5 @@
 
   // Import Bulma and Buefy styles
   @import "~bulma"
-  @import "~buefy/src/scss/buefy"
   @import "~animate.css"
 </style>
