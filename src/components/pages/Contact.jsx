@@ -50,12 +50,16 @@ const styles = [
   { featureType: 'water', elementType: 'labels.text.fill', stylers: [{ color: '#888888' }] },
   {},
 ];
+const defaultOptions = {
+  styles,
+  scrollwheel: false,
+};
 
 const GoogleMaps = withGoogleMap(props =>
   <GoogleMap
     ref={props.onMapLoad}
     defaultZoom={5}
-    defaultOptions={{ styles }}
+    defaultOptions={defaultOptions}
     defaultCenter={{ lat: 50.946154, lng: 0.968369 }}
     onClick={props.onMapClick}
   >
