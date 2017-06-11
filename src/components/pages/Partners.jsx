@@ -24,7 +24,12 @@ const Wrapper = styled.div`
 
 const Item = styled.div`
   background-color: rgba(0, 0, 0, 0);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
   transition: background-color 250ms linear;
+  max-width: 100%;
+  position: relative;
+  margin-bottom: 0.75rem;
+  .media:not(:last-child);
   &:hover {
     background-color: rgba(0, 0, 0, 0.5);
     .image {
@@ -63,26 +68,25 @@ const data = [
   },
 ];
 
-const Partners = () => (
+const Partners = () =>
   <SuperPage title={title} subtitle={subtitle} background={interback} hasPadding>
     <Wrapper>
       <div className="column is-10 is-offset-1">
         <div className="columns is-multiline is-centered">
-          {data.map(item => (
+          {data.map(item =>
             <div className="column is-2" key={item.img.toString()}>
-              <Item className="card">
+              <Item>
                 <div className="card-image">
                   <Figure className="image is-1by1">
                     <img src={item.img} alt="Partner" />
                   </Figure>
                 </div>
               </Item>
-            </div>
-          ))}
+            </div>,
+          )}
         </div>
       </div>
     </Wrapper>
-  </SuperPage>
-);
+  </SuperPage>;
 
 export default Partners;

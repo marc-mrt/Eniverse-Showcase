@@ -27,7 +27,7 @@ const CaTitle = styled.h2`
 `;
 
 const Item = styled.div`
-  transition: background-color 250ms linear;
+  transition: all 500ms linear;
   &:hover {
     background-color: rgba(0, 0, 0, 0.05);
     transition: color 250ms linear;
@@ -95,17 +95,20 @@ const data = [
     items: [
       {
         title: 'Brand Consulting',
-        subtitle: 'We can advise on how to best position yourself in the eSports industry thanks to our expertise and first-hand insights.',
+        subtitle:
+          'We can advise on how to best position yourself in the eSports industry thanks to our expertise and first-hand insights.',
         icon: 'fa-bullhorn',
       },
       {
         title: 'Sponsorship',
-        subtitle: 'Get in front of your audience. Partner with the best organisations, events and players to access their community.',
+        subtitle:
+          'Get in front of your audience. Partner with the best organisations, events and players to access their community.',
         icon: 'fa-suitcase',
       },
       {
         title: 'Events Creation',
-        subtitle: 'Want to become a leading actor in the industry by creating your own eSports events? We can make this happen.',
+        subtitle:
+          'Want to become a leading actor in the industry by creating your own eSports events? We can make this happen.',
         icon: 'fa-trophy',
       },
     ],
@@ -115,33 +118,36 @@ const data = [
     items: [
       {
         title: 'Relationship Management',
-        subtitle: 'We will assist you in all communication and interaction with your stakeholders to foster solid and long-lasting relationships.',
+        subtitle:
+          'We will assist you in all communication and interaction with your stakeholders to foster solid and long-lasting relationships.',
         icon: 'fa-users',
       },
       {
         title: 'Fundraising',
-        subtitle: 'We bring top-quality sponsors to the table to get your projects and events to the next level.',
+        subtitle:
+          'We bring top-quality sponsors to the table to get your projects and events to the next level.',
         icon: 'fa-money',
       },
       {
         title: 'Business Development',
-        subtitle: 'We will create new strategic opportunities for you by leveraging our network and putting our experience at your service.',
+        subtitle:
+          'We will create new strategic opportunities for you by leveraging our network and putting our experience at your service.',
         icon: 'fa-line-chart',
       },
     ],
   },
 ];
 
-const What = () => (
-  <SuperPage id="what" title={title} subtitle={subtitle} hasPadding>
-    <Wrapper>
-      {data.map(category => (
+const What = () =>
+  <SuperPage title={title} subtitle={subtitle} hasPadding>
+    <Wrapper id="what">
+      {data.map(category =>
         <Category key={category.name}>
           <CaTitle>
             {category.name}
           </CaTitle>
           <div className="columns">
-            {category.items.map(item => (
+            {category.items.map(item =>
               <Item key={item.title.toString()} className="column is-one-third">
                 <ItemFlag className="column is-6 is-offset-3 tile notification is-black">
                   <ItemIcon
@@ -156,13 +162,12 @@ const What = () => (
                 <ItemTitle className="itemTitle">{item.title}</ItemTitle>
                 <br />
                 <ItemDesc className="itemDesc">{item.subtitle}</ItemDesc>
-              </Item>
-            ))}
+              </Item>,
+            )}
           </div>
-        </Category>
-      ))}
+        </Category>,
+      )}
     </Wrapper>
-  </SuperPage>
-);
+  </SuperPage>;
 
 export default What;

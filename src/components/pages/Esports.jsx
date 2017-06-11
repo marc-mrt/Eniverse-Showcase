@@ -187,7 +187,7 @@ Esports.defaultProps = {
   playerState: () => {},
 };
 
-const addCounting = compose(
+const composition = compose(
   withState('player', 'setPlayer', {
     player: null,
     ready: false,
@@ -228,7 +228,7 @@ const addCounting = compose(
     isMuted: player.muted,
   })),
 );
-const enhance = compose(addCounting);
+const enhance = compose(composition);
 const EnhancedComponent = enhance(Esports);
 
 export default EnhancedComponent;

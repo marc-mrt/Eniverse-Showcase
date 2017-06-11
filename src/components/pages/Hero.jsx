@@ -59,19 +59,19 @@ const Hero = () => (
       <div className="hero-body">
         <TitleWrap className="is-hidden-mobile">
           <Logo src={logo} alt={title} />
-          <Title className="title">
+          <Title>
             {title}
           </Title>
-          <Subtitle className="subtitle" style={{ color: 'grey' }}>
+          <Subtitle style={{ color: 'grey' }}>
             {subtitle}
           </Subtitle>
         </TitleWrap>
         <TitleWrap className="is-hidden-tablet">
           <img src={logo} alt={title} />
-          <Title className="title" style={{ fontSize: '3em', display: 'block' }}>
+          <Title style={{ fontSize: '3em', display: 'block' }}>
             {title}
           </Title>
-          <Subtitle className="subtitle" style={{ color: 'grey', fontSize: '1em', margin: '0' }}>
+          <Subtitle style={{ color: 'grey', fontSize: '1em', margin: '0' }}>
             {subtitle}
           </Subtitle>
         </TitleWrap>

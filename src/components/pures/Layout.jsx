@@ -1,30 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Scroll from 'react-scroll';
+
+import Navbar from './Navbar';
 
 const Wrapper = styled.div`
   height: auto;
 `;
 
-const ScrollTrigger = styled.div`
-  background-image: linear-gradient( 0deg, black, transparent, transparent );
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 5vh;
-  &:hover {
-    background-image: linear-gradient( 0deg, black, black, transparent );
-  }
-`;
-
-const Layout = ({ children }) => (
+const Layout = ({ children }) =>
   <Wrapper>
+    <Navbar />
     {children}
-    <ScrollTrigger onClick={() => Scroll.animateScroll.scrollToBottom()} />
-  </Wrapper>
-);
+  </Wrapper>;
 
+/* eslint-disable react/forbid-prop-types */
 Layout.propTypes = {
   children: PropTypes.node,
 };

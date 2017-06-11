@@ -41,7 +41,7 @@ const Subtitle = styled.h5`
 const Page = ({ children, title, subtitle, background, hasPadding }) => (
   <Background
     bg={background || false}
-    style={{ minHeight: '100vh', width: '100%', padding: hasPadding ? '2em' : false }}
+    style={{ minHeight: '100vh', width: '100%', padding: hasPadding ? '3em' : false }}
   >
     {title
       ? <Wrapper>
