@@ -10,9 +10,7 @@ import { Link, withRouter } from 'react-router-dom';
 import NavLink from './Navitem';
 import logo from '../../assets/logo.png';
 
-const Wrapper = styled.div`
-  width: 100%;
-`;
+const Wrapper = styled.div`width: 100%;`;
 
 const navStyle = {
   background: 'rgba(0, 0, 0, 0.5)',
@@ -20,7 +18,28 @@ const navStyle = {
   position: 'fixed',
 };
 
-const Navbar = ({ clickLogo, clickHamburger, clickCloseburger, isActive, isHam }) =>
+const enhance = compose(
+  lifecycle({
+    componentDidUpdate() {
+      const hash = this.props.location.hash;
+      if (hash) {
+        scroller.scrollTo(hash, {
+          duration: 500,
+          smooth: true,
+        });
+      }
+    },
+  }),
+  withState('isHam', 'setHam', false),
+  withHandlers({
+    clickLogo: () => () => animateScroll.scrollToTop(),
+    clickHamburger: ({ setHam }) => () => setHam(nav => !nav),
+    clickCloseburger: ({ setHam }) => () => setHam(false),
+    isActive: ({ location }) => name => name === location.hash,
+  }),
+);
+
+const Navbar = enhance(({ clickLogo, clickHamburger, clickCloseburger, isActive, isHam }) =>
   <Wrapper className="nav" style={navStyle}>
     <div className="nav-left">
       <Link to="#eniverse" className="nav-item" onClick={clickLogo}>
@@ -63,7 +82,8 @@ const Navbar = ({ clickLogo, clickHamburger, clickCloseburger, isActive, isHam }
       <span />
       <span />
     </span>
-  </Wrapper>;
+  </Wrapper>,
+);
 
 /* eslint-disable react/forbid-prop-types */
 Navbar.propTypes = {
@@ -82,27 +102,4 @@ Navbar.defaultProps = {
   isHam: false,
 };
 
-const composition = compose(
-  lifecycle({
-    componentDidUpdate() {
-      const hash = this.props.location.hash;
-      if (hash) {
-        scroller.scrollTo(hash, {
-          duration: 500,
-          smooth: true,
-        });
-      }
-    },
-  }),
-  withState('isHam', 'setHam', false),
-  withHandlers({
-    clickLogo: () => () => animateScroll.scrollToTop(),
-    clickHamburger: ({ setHam }) => () => setHam(nav => !nav),
-    clickCloseburger: ({ setHam }) => () => setHam(false),
-    isActive: ({ location }) => name => name === location.hash,
-  }),
-);
-const enhance = compose(composition);
-const EnhancedComponent = enhance(Navbar);
-
-export default withRouter(EnhancedComponent);
+export default withRouter(Navbar);

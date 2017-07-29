@@ -1,5 +1,6 @@
 import React from 'react';
 import { Element } from 'react-scroll';
+
 import Layout from './components/pures/Layout';
 import Partners from './components/pages/Partners';
 import Hero from './components/pages/Hero';

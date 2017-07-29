@@ -1,5 +1,5 @@
 {
-  "name": "react-project",
+  "name": "Eniverse",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -67,7 +67,7 @@
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "node scripts/start.js",
     "start": "npm-run-all -p watch-css start-js",
-    "build": "npm run build-css && react-scripts build",
+    "build": "npm run build-css && node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "flow": "flow",
     "storybook": "start-storybook -p 9001",

@@ -99,63 +99,108 @@ const opts = {
   },
 };
 
-const Esports = ({
-  isDisplayed,
-  isPlaying,
-  isMuted,
-  play,
-  pause,
-  replay,
-  toggleSound,
-  playerPlay,
-  playerPause,
-  playerReady,
-  playerEnd,
-  playerState,
-}) =>
-  <SuperPage id="hero">
-    <Wrapper className="hero is-fullheight">
-      <Overlay>
-        <InputPanel>
-          {!isPlaying
-            ? <InputMainButtonTrigger>
-              <InputMainButton className="icon is-large" onClick={play}>
-                <i className="fa fa-play" style={{ fontSize: '3em' }} />
-              </InputMainButton>
-            </InputMainButtonTrigger>
-            : <InputMainButtonTrigger isHoverable>
-              <InputMainButton className="icon is-large" onClick={pause}>
-                <i className="fa fa-pause" style={{ fontSize: '3em' }} />
-              </InputMainButton>
-            </InputMainButtonTrigger>}
-          {isDisplayed
-            ? <InputOptionArea>
-              <InputOptionButton className="icon" onClick={replay}>
-                <i className="fa fa-reply" style={{ fontSize: '1.5em' }} />
-              </InputOptionButton>
-              <InputOptionButton className="icon" onClick={toggleSound}>
-                <i
-                  className={classNames('fa', isMuted ? 'fa-volume-off' : 'fa-volume-up')}
-                  style={{ fontSize: '1.5em' }}
-                />
-              </InputOptionButton>
-            </InputOptionArea>
-            : false}
-        </InputPanel>
-        <Player
-          id="player"
-          videoId="07Nr2YkjoFI"
-          opts={opts}
-          onEnd={playerEnd}
-          onPlay={playerPlay}
-          onPause={playerPause}
-          onReady={playerReady}
-          onStateChange={playerState}
-          displayed={isDisplayed}
-        />
-      </Overlay>
-    </Wrapper>
-  </SuperPage>;
+const enhance = compose(
+  withState('player', 'setPlayer', {
+    instance: null,
+    ready: false,
+    playing: false,
+    muted: false,
+    state: -1,
+  }),
+  withHandlers({
+    playerEnd: ({ setPlayer }) => () =>
+      setPlayer(p => ({
+        ...p,
+        ready: true,
+        playing: false,
+        muted: false,
+      })),
+    playerReady: ({ setPlayer }) => e =>
+      setPlayer(p => ({ ...p, ready: true, instance: e.target })),
+    playerPlay: ({ setPlayer }) => () => setPlayer(p => ({ ...p, playing: true })),
+    playerPause: ({ setPlayer }) => () => setPlayer(p => ({ ...p, playing: false })),
+    playerState: ({ setPlayer }) => e => setPlayer(p => ({ ...p, state: e.data })),
+    play: ({ player }) => () => player.instance.playVideo(),
+    pause: ({ player }) => () => player.instance.pauseVideo(),
+    replay: ({ player }) => () => {
+      player.instance.stopVideo();
+      player.instance.playVideo();
+    },
+    toggleSound: ({ player, setPlayer }) => () => {
+      if (!player.muted) {
+        player.instance.mute();
+      } else {
+        player.instance.unMute();
+      }
+      setPlayer(p => ({ ...p, muted: !player.muted }));
+    },
+  }),
+  withProps(({ player }) => ({
+    isDisplayed: player.state !== 0 && player.state !== -1,
+    isPlaying: player.playing,
+    isMuted: player.muted,
+  })),
+);
+
+const Esports = enhance(
+  ({
+    isDisplayed,
+    isPlaying,
+    isMuted,
+    play,
+    pause,
+    replay,
+    toggleSound,
+    playerPlay,
+    playerPause,
+    playerReady,
+    playerEnd,
+    playerState,
+  }) =>
+    <SuperPage id="hero">
+      <Wrapper className="hero is-fullheight">
+        <Overlay>
+          <InputPanel>
+            {!isPlaying
+              ? <InputMainButtonTrigger>
+                <InputMainButton className="icon is-large" onClick={play}>
+                  <i className="fa fa-play" style={{ fontSize: '3em' }} />
+                </InputMainButton>
+              </InputMainButtonTrigger>
+              : <InputMainButtonTrigger isHoverable>
+                <InputMainButton className="icon is-large" onClick={pause}>
+                  <i className="fa fa-pause" style={{ fontSize: '3em' }} />
+                </InputMainButton>
+              </InputMainButtonTrigger>}
+            {isDisplayed
+              ? <InputOptionArea>
+                <InputOptionButton className="icon" onClick={replay}>
+                  <i className="fa fa-reply" style={{ fontSize: '1.5em' }} />
+                </InputOptionButton>
+                <InputOptionButton className="icon" onClick={toggleSound}>
+                  <i
+                    className={classNames('fa', isMuted ? 'fa-volume-off' : 'fa-volume-up')}
+                    style={{ fontSize: '1.5em' }}
+                  />
+                </InputOptionButton>
+              </InputOptionArea>
+              : false}
+          </InputPanel>
+          <Player
+            id="player"
+            videoId="07Nr2YkjoFI"
+            opts={opts}
+            onEnd={playerEnd}
+            onPlay={playerPlay}
+            onPause={playerPause}
+            onReady={playerReady}
+            onStateChange={playerState}
+            displayed={isDisplayed}
+          />
+        </Overlay>
+      </Wrapper>
+    </SuperPage>,
+);
 
 Esports.propTypes = {
   isDisplayed: PropTypes.bool,
@@ -187,48 +232,4 @@ Esports.defaultProps = {
   playerState: () => {},
 };
 
-const composition = compose(
-  withState('player', 'setPlayer', {
-    player: null,
-    ready: false,
-    playing: false,
-    muted: false,
-    state: -1,
-  }),
-  withHandlers({
-    playerEnd: ({ setPlayer }) => () =>
-      setPlayer(p => ({
-        ...p,
-        ready: true,
-        playing: false,
-        muted: false,
-      })),
-    playerReady: ({ setPlayer }) => e => setPlayer(p => ({ ...p, ready: true, player: e.target })),
-    playerPlay: ({ setPlayer }) => () => setPlayer(p => ({ ...p, playing: true })),
-    playerPause: ({ setPlayer }) => () => setPlayer(p => ({ ...p, playing: false })),
-    playerState: ({ setPlayer }) => e => setPlayer(p => ({ ...p, state: e.data })),
-    play: ({ player }) => () => player.player.playVideo(),
-    pause: ({ player }) => () => player.player.pauseVideo(),
-    replay: ({ player }) => () => {
-      player.player.stopVideo();
-      player.player.playVideo();
-    },
-    toggleSound: ({ player, setPlayer }) => () => {
-      if (!player.muted) {
-        player.player.mute();
-      } else {
-        player.player.unMute();
-      }
-      setPlayer(p => ({ ...p, muted: !player.muted }));
-    },
-  }),
-  withProps(({ player }) => ({
-    isDisplayed: player.state !== 0 && player.state !== -1,
-    isPlaying: player.playing,
-    isMuted: player.muted,
-  })),
-);
-const enhance = compose(composition);
-const EnhancedComponent = enhance(Esports);
-
-export default EnhancedComponent;
+export default Esports;
