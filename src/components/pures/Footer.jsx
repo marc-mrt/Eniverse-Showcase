@@ -6,11 +6,17 @@ const Wrapper = styled.footer`
   margin-top: 3em;
 `;
 
-const Separator = styled.div`
-  height: .5vh;
-  position: relative;
-  top: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.1), #1e358a, rgba(0, 0, 0, 0.1));
+const Container = styled.div`
+  &::before {
+    content: '';
+    width: 100%;
+    height: 3px;
+    background-color: #2f508e;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 8px;
+  }
 `;
 
 const Content = styled.div`margin-top: 1em;`;
@@ -24,20 +30,17 @@ const Comment = styled.p`
 
 const Footer = () =>
   <Wrapper>
-    <div className="container">
-      <Separator />
+    <Container className="container">
       <Content className="content has-text-centered">
         <strong>Copyright © 2017 Eniverse</strong>
         <br />
-        <Comment>
-          Website:&nbsp;
-        </Comment>
+        <Comment>Website:&nbsp;</Comment>
         <a className="icon" href="https://github.com/marc-mrt/Eniverse-Showcase">
           <i className="fa fa-github" />
         </a>
         <Comment>by Marc Morant</Comment>
       </Content>
-    </div>
+    </Container>
   </Wrapper>;
 
 export default Footer;
