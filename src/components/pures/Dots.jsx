@@ -5,7 +5,8 @@ import styled from 'styled-components';
 
 const Svg = styled.svg`
   transition: all linear 250ms;
-  transform: scale(${props => (props.scale ? '1.35' : '1')}) rotate(${props => (props.scale ? '45deg' : '0deg')});
+  transform: scale(${props => (props.scale ? '1.35' : '1')})
+    rotate(${props => (props.scale ? '45deg' : '0deg')});
 `;
 
 const DotShape = ({ isActive, isHovered }) =>
