@@ -40,7 +40,7 @@ const enhance = compose(
 );
 
 const Navbar = enhance(({ clickLogo, clickHamburger, clickCloseburger, isActive, isHam }) =>
-  <Wrapper className="nav" style={navStyle}>
+  <Wrapper className="nav is-hidden-desktop" style={navStyle}>
     <div className="nav-left">
       <Link to="#eniverse" className="nav-item" onClick={clickLogo}>
         <img src={logo} alt="Eniverse" />
@@ -85,7 +85,6 @@ const Navbar = enhance(({ clickLogo, clickHamburger, clickCloseburger, isActive,
   </Wrapper>,
 );
 
-/* eslint-disable react/forbid-prop-types */
 Navbar.propTypes = {
   clickLogo: PropTypes.func,
   clickHamburger: PropTypes.func,

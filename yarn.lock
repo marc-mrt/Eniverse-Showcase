@@ -5174,6 +5174,10 @@ react-dom@^15.5.4:
     object-assign "^4.1.0"
     prop-types "~15.5.7"
 
+react-full-page@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/react-full-page/-/react-full-page-0.0.4.tgz#76e220b96eff314a73b2ab939806f55abf8def82"
+
 react-fuzzy@^0.3.3:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/react-fuzzy/-/react-fuzzy-0.3.3.tgz#9f6775393cd03bbd3c977651771abe16c8b29a81"

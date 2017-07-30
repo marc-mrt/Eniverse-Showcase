@@ -3,10 +3,12 @@ import styled from 'styled-components';
 
 const Wrapper = styled.footer`
   height: auto;
+  margin-top: 3em;
+  background-color: rgba(0, 0, 0, 0.25);
 `;
 
 const Footer = () =>
-  <Wrapper className="footer">
+  <Wrapper>
     <div className="container">
       <div className="content has-text-centered">
         <p>

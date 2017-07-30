@@ -78,7 +78,7 @@ const InputMainButton = styled(InputButton)`
 
 const InputOptionArea = styled.div`
   position: absolute;
-  padding: 1.5em 10em;
+  padding: 3em 1em;
   right: 0px;
   bottom: 0px;
 `;

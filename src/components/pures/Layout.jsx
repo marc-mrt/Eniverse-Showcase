@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Navbar from './Navbar';
+import Dots from './Dots';
 
-const Wrapper = styled.div`
-  height: auto;
-`;
+const Wrapper = styled.div`height: auto;`;
 
 const Layout = ({ children }) =>
   <Wrapper>
     <Navbar />
+    <Dots />
     {children}
   </Wrapper>;
 

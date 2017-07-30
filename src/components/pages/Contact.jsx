@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
 import Page from '../wrappers/Page';
+import Footer from '../pures/Footer';
 import markerIcon from '../../assets/maps/marker.png';
 
 const SuperPage = styled(Page)`
@@ -71,14 +72,13 @@ const Partners = () =>
   <SuperPage title={title} subtitle={subtitle} hasPadding>
     <Wrapper>
       <div className="columns">
-        <div className="column">
-          Hey Infos !
-        </div>
+        <div className="column">Hey Infos !</div>
         <GoogleMaps
           containerElement={<MapContainer className="column" />}
           mapElement={<div style={{ height: '100%' }} />}
         />
       </div>
+      <Footer />
     </Wrapper>
   </SuperPage>;
 
