@@ -3,8 +3,13 @@ import PropTypes from 'prop-types';
 import { compose, withState, withHandlers, withProps } from 'recompose';
 import styled from 'styled-components';
 
+const Svg = styled.svg`
+  transition: all linear 250ms;
+  transform: scale(${props => (props.scale ? '1.35' : '1')});
+`;
+
 const DotShape = ({ isActive, isHovered }) =>
-  <svg height="24" width="24">
+  <Svg height="24" width="24" scale={isHovered}>
     <circle
       r="10"
       cx="12"
@@ -13,7 +18,7 @@ const DotShape = ({ isActive, isHovered }) =>
       strokeWidth="2"
       fill={isActive ? '#1e358a' : 'white'}
     />
-  </svg>;
+  </Svg>;
 
 DotShape.propTypes = {
   isActive: PropTypes.bool,
@@ -28,17 +33,19 @@ DotShape.defaultProps = {
 //----------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------
 
+const Container = styled.div`cursor: pointer;`;
+
 const Label = styled.p`
-  transition: opacity 500ms linear, visibility 250ms linear;
+  transition: opacity 500ms linear, visibility 500ms linear;
   color: white;
   font-family: 'Anton';
   font-size: 1.5em;
   position: relative;
   top: -4px;
   left: 8px;
-  text-shadow: -1px -1px 0 #1e358a, 1px -1px 0 #1e358a, -1px 1px 0 #1e358a, 1px 1px 0 #1e358a;
+  text-shadow: -2px -2px 0 #1e358a, 2px -2px 0 #1e358a, -2px 2px 0 #1e358a, 2px 2px 0 #1e358a;
   text-transform: uppercase;
-  display: ${props => (props.isDisplayed ? 'inline' : 'none')};
+  display: inline;
   visibility: ${props => (props.isDisplayed ? 'visible' : 'hidden')};
   opacity: ${props => (props.isDisplayed ? 1 : 0)};
 `;
@@ -55,12 +62,12 @@ const enhance = compose(
 );
 
 const Dot = enhance(({ onOver, onOut, isHovered, name }) =>
-  <div onMouseOver={onOver} onMouseOut={onOut}>
+  <Container onMouseOver={onOver} onMouseOut={onOut}>
     <DotShape isHovered={isHovered} />
     <Label isDisplayed={isHovered}>
       {name}
     </Label>
-  </div>,
+  </Container>,
 );
 
 Dot.propTypes = {
