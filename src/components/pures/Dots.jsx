@@ -3,31 +3,47 @@ import PropTypes from 'prop-types';
 import { compose, withState, withHandlers, withProps } from 'recompose';
 import styled from 'styled-components';
 
+import logo from '../../assets/logo.png';
+import logoActive from '../../assets/logo-active.png';
+
 const Svg = styled.svg`
   transition: all linear 250ms;
   transform: scale(${props => (props.scale ? '1.35' : '1')});
 `;
 
-const DotShape = ({ isActive, isHovered }) =>
-  <Svg height="24" width="24" scale={isHovered}>
-    <circle
-      r="10"
-      cx="12"
-      cy="12"
-      stroke={isHovered ? '#1e358a' : 'black'}
-      strokeWidth="2"
-      fill={isActive ? '#1e358a' : 'white'}
-    />
-  </Svg>;
+const Image = styled.img`
+  width: 24px;
+  height: 24px;
+  transition: all linear 250ms;
+  transform: scale(${props => (props.scale ? '1.35' : '1')});
+`;
+
+const DotShape = ({ isActive, isHovered, isHome }) =>
+  <span>
+    {isHome
+      ? <Image src={isHovered ? logo : logoActive} alt="logo" scale={isHovered} />
+      : <Svg height="24" width="24" scale={isHovered}>
+        <circle
+          r="10"
+          cx="12"
+          cy="12"
+          stroke={isHovered ? '#1e358a' : 'black'}
+          strokeWidth="2"
+          fill={isActive ? '#1e358a' : 'white'}
+        />
+      </Svg>}
+  </span>;
 
 DotShape.propTypes = {
   isActive: PropTypes.bool,
   isHovered: PropTypes.bool,
+  isHome: PropTypes.bool,
 };
 
 DotShape.defaultProps = {
   isActive: false,
   isHovered: false,
+  isHome: false,
 };
 
 //----------------------------------------------------------------------------------------
@@ -56,14 +72,15 @@ const enhance = compose(
     onOver: ({ setHover }) => () => setHover(true),
     onOut: ({ setHover }) => () => setHover(false),
   }),
-  withProps(({ hover }) => ({
+  withProps(({ hover, name }) => ({
     isHovered: hover,
+    isHome: name === 'Eniverse',
   })),
 );
 
-const Dot = enhance(({ onOver, onOut, isHovered, name }) =>
+const Dot = enhance(({ onOver, onOut, isHovered, isHome, name }) =>
   <Container onMouseOver={onOver} onMouseOut={onOut}>
-    <DotShape isHovered={isHovered} />
+    <DotShape isHovered={isHovered} isHome={isHome} />
     <Label isDisplayed={isHovered}>
       {name}
     </Label>
@@ -73,6 +90,7 @@ const Dot = enhance(({ onOver, onOut, isHovered, name }) =>
 Dot.propTypes = {
   onOver: PropTypes.func,
   onOut: PropTypes.func,
+  isHome: PropTypes.bool,
   isHovered: PropTypes.bool,
   name: PropTypes.string,
 };
@@ -81,6 +99,7 @@ Dot.defaultProps = {
   onOver: () => {},
   onOut: () => {},
   isHovered: false,
+  isHome: false,
   name: '',
 };
 
