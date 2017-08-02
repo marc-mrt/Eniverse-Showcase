@@ -1,110 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { compose, withState, withHandlers, withProps } from 'recompose';
 import styled from 'styled-components';
 
-import logo from '../../assets/logo.png';
-import logoActive from '../../assets/logo-active.png';
-
-const Svg = styled.svg`
-  transition: all linear 250ms;
-  transform: scale(${props => (props.scale ? '1.35' : '1')});
-`;
-
-const Image = styled.img`
-  width: 24px;
-  height: 24px;
-  transition: all linear 250ms;
-  transform: scale(${props => (props.scale ? '1.35' : '1')});
-`;
-
-const DotShape = ({ isActive, isHovered, isHome }) =>
-  <span>
-    {isHome
-      ? <Image src={isHovered ? logo : logoActive} alt="logo" scale={isHovered} />
-      : <Svg height="24" width="24" scale={isHovered}>
-        <circle
-          r="10"
-          cx="12"
-          cy="12"
-          stroke={isHovered ? '#1e358a' : 'black'}
-          strokeWidth="2"
-          fill={isActive ? '#1e358a' : 'white'}
-        />
-      </Svg>}
-  </span>;
-
-DotShape.propTypes = {
-  isActive: PropTypes.bool,
-  isHovered: PropTypes.bool,
-  isHome: PropTypes.bool,
-};
-
-DotShape.defaultProps = {
-  isActive: false,
-  isHovered: false,
-  isHome: false,
-};
-
-//----------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------
-
-const Container = styled.div`cursor: pointer;`;
-
-const Label = styled.p`
-  transition: opacity 500ms linear, visibility 500ms linear;
-  color: white;
-  font-family: 'Anton';
-  font-size: 1.5em;
-  position: relative;
-  top: -4px;
-  left: 8px;
-  text-shadow: -2px -2px 0 #1e358a, 2px -2px 0 #1e358a, -2px 2px 0 #1e358a, 2px 2px 0 #1e358a;
-  text-transform: uppercase;
-  display: inline;
-  visibility: ${props => (props.isDisplayed ? 'visible' : 'hidden')};
-  opacity: ${props => (props.isDisplayed ? 1 : 0)};
-`;
-
-const enhance = compose(
-  withState('hover', 'setHover', false),
-  withHandlers({
-    onOver: ({ setHover }) => () => setHover(true),
-    onOut: ({ setHover }) => () => setHover(false),
-  }),
-  withProps(({ hover, name }) => ({
-    isHovered: hover,
-    isHome: name === 'Eniverse',
-  })),
-);
-
-const Dot = enhance(({ onOver, onOut, isHovered, isHome, name }) =>
-  <Container onMouseOver={onOver} onMouseOut={onOut}>
-    <DotShape isHovered={isHovered} isHome={isHome} />
-    <Label isDisplayed={isHovered}>
-      {name}
-    </Label>
-  </Container>,
-);
-
-Dot.propTypes = {
-  onOver: PropTypes.func,
-  onOut: PropTypes.func,
-  isHome: PropTypes.bool,
-  isHovered: PropTypes.bool,
-  name: PropTypes.string,
-};
-
-Dot.defaultProps = {
-  onOver: () => {},
-  onOut: () => {},
-  isHovered: false,
-  isHome: false,
-  name: '',
-};
-
-//----------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------
+import Dot from './Dot';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -116,11 +13,11 @@ const Wrapper = styled.div`
 
 const Dots = () =>
   <Wrapper className="is-hidden-mobile">
-    <Dot name="Eniverse" />
-    <Dot name="What we do" />
-    <Dot name="eSports" />
-    <Dot name="Partners" />
-    <Dot name="Contact us" />
+    <Dot name="Eniverse" route="#eniverse" />
+    <Dot name="What we do" route="#what" />
+    <Dot name="eSports" route="#esports" />
+    <Dot name="Partners" route="#partners" />
+    <Dot name="Contact us" route="#contact" />
   </Wrapper>;
 
 export default Dots;
