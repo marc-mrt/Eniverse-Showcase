@@ -72,7 +72,12 @@ const Partners = () =>
   <SuperPage title={title} subtitle={subtitle} hasPadding>
     <Wrapper>
       <div className="columns">
-        <div className="column">Hey Infos !</div>
+        <div className="column">
+          <a className="button is-primary is-fullwidth" href="mailto:wyz@mail.com">
+            Send us an email!
+          </a>
+          Hey Infos !
+        </div>
         <GoogleMaps
           containerElement={<MapContainer className="column" />}
           mapElement={<div style={{ height: '100%' }} />}

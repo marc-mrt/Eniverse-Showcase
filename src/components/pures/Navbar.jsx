@@ -2,9 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { scroller, animateScroll } from 'react-scroll';
+import { animateScroll } from 'react-scroll';
 import classNames from 'classnames';
-import { compose, lifecycle, withHandlers, withState } from 'recompose';
+import { compose, withHandlers, withState } from 'recompose';
 import { Link, withRouter } from 'react-router-dom';
 
 import NavLink from './Navitem';
@@ -19,17 +19,6 @@ const navStyle = {
 };
 
 const enhance = compose(
-  lifecycle({
-    componentDidUpdate() {
-      const hash = this.props.location.hash;
-      if (hash) {
-        scroller.scrollTo(hash, {
-          duration: 500,
-          smooth: true,
-        });
-      }
-    },
-  }),
   withState('isHam', 'setHam', false),
   withHandlers({
     clickLogo: () => () => animateScroll.scrollToTop(),
