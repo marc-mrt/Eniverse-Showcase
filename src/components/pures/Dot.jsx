@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { compose, withState, withHandlers, withProps } from 'recompose';
 
@@ -26,6 +27,12 @@ const Label = styled.p`
 `;
 
 const enhance = compose(
+  connect(
+    state => ({
+      isScrolling: state.isScrollPending,
+    }),
+    undefined,
+  ),
   withState('hover', 'setHover', false),
   withHandlers({
     onOver: ({ setHover }) => () => setHover(true),
@@ -35,16 +42,18 @@ const enhance = compose(
     isHovered: hover,
     isHome: name === 'Eniverse',
     isActive: location.hash === route,
+    curRoute: location.hash,
   })),
 );
 
-const Dot = enhance(({ onOver, onOut, isHovered, isActive, isHome, name, route }) =>
-  <DotLink to={route} onMouseOver={onOver} onMouseOut={onOut}>
-    <DotShape isHovered={isHovered} isHome={isHome} isActive={isActive} />
-    <Label isDisplayed={isHovered}>
-      {name}
-    </Label>
-  </DotLink>,
+const Dot = enhance(
+  ({ onOver, onOut, isScrolling, isHovered, isActive, isHome, name, route, curRoute }) =>
+    <DotLink to={isScrolling ? curRoute : route} onMouseOver={onOver} onMouseOut={onOut}>
+      <DotShape isHovered={isHovered} isHome={isHome} isActive={isActive} />
+      <Label isDisplayed={isHovered}>
+        {name}
+      </Label>
+    </DotLink>,
 );
 
 Dot.propTypes = {
@@ -53,18 +62,22 @@ Dot.propTypes = {
   isHome: PropTypes.bool,
   isActive: PropTypes.bool,
   isHovered: PropTypes.bool,
+  isScrolling: PropTypes.bool,
   name: PropTypes.string,
   route: PropTypes.string,
+  curRoute: PropTypes.string,
 };
 
 Dot.defaultProps = {
   onOver: () => {},
   onOut: () => {},
+  isScrolling: false,
   isHovered: false,
   isActive: false,
   isHome: false,
   name: '',
   route: '',
+  curRoute: '',
 };
 
 export default withRouter(Dot);

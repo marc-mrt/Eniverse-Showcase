@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+
+import { enableScroll, disableScroll } from '../../actions';
 import animatedScrollTo from '../../utils/animatedScrollTo';
 
 class FullPage extends React.Component {
@@ -98,7 +101,9 @@ class FullPage extends React.Component {
       });
 
       this.scrollPending = true;
+      this.props.enableScrollPending();
       animatedScrollTo(this.slides[slide], 500, () => {
+        this.props.disableScrollPending();
         this.scrollPending = false;
       });
     }
@@ -141,31 +146,7 @@ class FullPage extends React.Component {
     }
   }
 
-  scrollNext() {
-    this.scrollToSlide(this.state.activeSlide + 1);
-  }
-
-  scrollPrev() {
-    this.scrollToSlide(this.state.activeSlide - 1);
-  }
-
-  getSlidesCount() {
-    return this.slidesCount;
-  }
-
-  getCurrentIndex() {
-    return this.state.activeSlide;
-  }
-
   render() {
-    const controls = {
-      scrollToSlide: this.scrollToSlide.bind(this),
-      scrollNext: this.scrollNext.bind(this),
-      scrollPrev: this.scrollPrev.bind(this),
-      getSlidesCount: this.getSlidesCount.bind(this),
-      getCurrentIndex: this.getCurrentIndex.bind(this),
-    };
-
     return (
       <div style={{ height: this.state.height }}>
         {this.props.children}
@@ -178,4 +159,9 @@ FullPage.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default withRouter(FullPage);
+const mapDispatchToProps = dispatch => ({
+  enableScrollPending: () => dispatch(enableScroll()),
+  disableScrollPending: () => dispatch(disableScroll()),
+});
+
+export default connect(undefined, mapDispatchToProps)(withRouter(FullPage));

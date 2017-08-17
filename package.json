@@ -10,11 +10,13 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-google-maps": "beta",
+    "react-redux": "^5.0.6",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-scroll": "^1.5.2",
     "react-youtube": "^7.4.0",
     "recompose": "^0.23.4",
+    "redux": "^3.7.2",
     "styled-components": "^1.4.6"
   },
   "devDependencies": {
