@@ -14,16 +14,16 @@ const DotLink = styled(Link)`
 const Label = styled.p`
   transition: opacity 500ms linear, visibility 500ms linear;
   color: white;
-  font-family: 'Anton';
-  font-size: 1.5em;
+  font-family: 'Roboto';
+  font-weight: 500;
   position: relative;
-  top: -4px;
   left: 8px;
-  text-shadow: -2px -2px 0 #1e358a, 2px -2px 0 #1e358a, -2px 2px 0 #1e358a, 2px 2px 0 #1e358a;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
   text-transform: uppercase;
   display: inline;
   visibility: ${props => (props.isDisplayed ? 'visible' : 'hidden')};
   opacity: ${props => (props.isDisplayed ? 1 : 0)};
+  margin-bottom: 10px;
 `;
 
 const enhance = compose(
