@@ -23,24 +23,19 @@ const Wrapper = styled.div`
 `;
 
 const Item = styled.div`
-  background-color: rgba(0, 0, 0, 0);
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
   transition: background-color 250ms linear;
   max-width: 100%;
   position: relative;
   margin-bottom: 0.75rem;
-  .media:not(:last-child);
+  .media: not(:last-child);
   &:hover {
-    background-color: rgba(0, 0, 0, 0.5);
     .image {
       transform: scale(1.1);
     }
   }
 `;
 
-const Figure = styled.figure`
-  transition: transform 250ms linear;
-`;
+const Figure = styled.figure`transition: transform 250ms linear;`;
 
 const title = 'Partners';
 const subtitle = 'These are some of the organisations that already trust us';
@@ -76,11 +71,9 @@ const Partners = () =>
           {data.map(item =>
             <div className="column is-2" key={item.img.toString()}>
               <Item>
-                <div className="card-image">
-                  <Figure className="image is-1by1">
-                    <img src={item.img} alt="Partner" />
-                  </Figure>
-                </div>
+                <Figure className="image is-1by1">
+                  <img src={item.img} alt="Partner" />
+                </Figure>
               </Item>
             </div>,
           )}
