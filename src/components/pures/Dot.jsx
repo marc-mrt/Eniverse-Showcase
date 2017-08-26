@@ -11,20 +11,20 @@ const DotLink = styled(Link)`
   display: block;
 `;
 
-const Label = styled.p`
-  transition: opacity 500ms linear, visibility 500ms linear;
-  color: white;
-  font-family: 'Roboto';
-  font-weight: 500;
-  position: relative;
-  left: 8px;
-  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
-  text-transform: uppercase;
-  display: inline;
-  visibility: ${props => (props.isDisplayed ? 'visible' : 'hidden')};
-  opacity: ${props => (props.isDisplayed ? 1 : 0)};
-  margin-bottom: 10px;
-`;
+// const Label = styled.p`
+//   transition: opacity 500ms linear, visibility 500ms linear;
+//   color: white;
+//   font-family: 'Roboto';
+//   font-weight: 500;
+//   position: relative;
+//   left: 8px;
+//   text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+//   text-transform: uppercase;
+//   display: inline;
+//   visibility: ${props => (props.isDisplayed ? 'visible' : 'hidden')};
+//   opacity: ${props => (props.isDisplayed ? 1 : 0)};
+//   margin-bottom: 10px;
+// `;
 
 const enhance = compose(
   connect(
@@ -47,12 +47,9 @@ const enhance = compose(
 );
 
 const Dot = enhance(
-  ({ onOver, onOut, isScrolling, isHovered, isActive, isHome, name, route, curRoute }) =>
+  ({ onOver, onOut, isScrolling, isHovered, isActive, isHome, route, curRoute }) =>
     <DotLink to={isScrolling ? curRoute : route} onMouseOver={onOver} onMouseOut={onOut}>
       <DotShape isHovered={isHovered} isHome={isHome} isActive={isActive} />
-      <Label isDisplayed={isHovered}>
-        {name}
-      </Label>
     </DotLink>,
 );
 

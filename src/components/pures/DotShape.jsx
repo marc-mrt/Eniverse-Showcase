@@ -4,27 +4,13 @@ import styled from 'styled-components';
 
 const Svg = styled.svg`
   transition: all linear 250ms;
-  transform: scale(${props => (props.scale ? '1.25' : '1')});
-  fill: ${props => (props.isActive ? 'white' : '#1e358a')};
+  transform: scale(${props => (props.isActive || props.scale ? '2' : '1')});
+  fill: ${props => (props.isActive ? '#959494' : '#393939')};
 `;
 
 const DotShape = ({ isActive, isHovered, isHome }) =>
-  <Svg height="12" width="12" scale={isHovered} isActive={isActive}>
-    {isHome
-      ? <rect
-        y="2.5"
-        width="10"
-        height="5"
-        stroke={isHovered ? '#1e358a' : 'black'}
-        strokeWidth={isHovered ? '1' : '.5'}
-      />
-      : <circle
-        r="5"
-        cx="6"
-        cy="6"
-        stroke={isHovered ? '#1e358a' : 'black'}
-        strokeWidth={isHovered ? '1' : '.5'}
-      />}
+  <Svg height="6" width="6" scale={isHovered} isActive={isActive}>
+    {isHome ? <rect y="2.5" width="5" height="2.5" /> : <circle r="2.5" cx="3" cy="3" />}
   </Svg>;
 
 DotShape.propTypes = {
