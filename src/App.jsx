@@ -9,6 +9,7 @@ import Hero from './components/pages/Hero';
 import What from './components/pages/What';
 import Esports from './components/pages/Esports';
 import Contact from './components/pages/Contact';
+import Events from './components/pages/Events';
 import ResponsiveScroll from './components/wrappers/ResponsiveScroll';
 
 const enhance = compose(
@@ -32,6 +33,9 @@ const App = enhance(() =>
       </Section>
       <Section name="#esports">
         <Esports />
+      </Section>
+      <Section name="#events">
+        <Events />
       </Section>
       <Section name="#partners">
         <Partners />

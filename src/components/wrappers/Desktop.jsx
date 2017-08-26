@@ -16,7 +16,7 @@ class Desktop extends React.Component {
 
     this.scrollPending = false;
     this.slides = [];
-    this.slidesCount = 5;
+    this.slidesCount = 6;
     this.touchSensitivity = 5;
     this.touchStart = 0;
 
@@ -58,10 +58,12 @@ class Desktop extends React.Component {
         return 1;
       case '#esports':
         return 2;
-      case '#partners':
+      case '#events':
         return 3;
-      case '#contact':
+      case '#partners':
         return 4;
+      case '#contact':
+        return 5;
       default:
     }
   }
@@ -75,8 +77,10 @@ class Desktop extends React.Component {
       case 2:
         return '#esports';
       case 3:
-        return '#partners';
+        return '#events';
       case 4:
+        return '#partners';
+      case 5:
         return '#contact';
       default:
     }

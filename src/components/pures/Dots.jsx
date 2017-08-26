@@ -16,6 +16,7 @@ const Dots = () =>
     <Dot name="Eniverse" route="#eniverse" />
     <Dot name="What we do" route="#what" />
     <Dot name="eSports" route="#esports" />
+    <Dot name="Events" route="#events" />
     <Dot name="Partners" route="#partners" />
     <Dot name="Contact us" route="#contact" />
   </Wrapper>;
