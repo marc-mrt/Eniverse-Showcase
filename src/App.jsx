@@ -9,7 +9,7 @@ import Hero from './components/pages/Hero';
 import What from './components/pages/What';
 import Esports from './components/pages/Esports';
 import Contact from './components/pages/Contact';
-import FullPage from './components/wrappers/FullPage';
+import ResponsiveScroll from './components/wrappers/ResponsiveScroll';
 
 const enhance = compose(
   lifecycle({
@@ -23,7 +23,7 @@ const enhance = compose(
 
 const App = enhance(() =>
   <Layout>
-    <FullPage>
+    <ResponsiveScroll>
       <Section name="#eniverse">
         <Hero />
       </Section>
@@ -39,7 +39,7 @@ const App = enhance(() =>
       <Section name="#contact">
         <Contact />
       </Section>
-    </FullPage>
+    </ResponsiveScroll>
   </Layout>,
 );
 

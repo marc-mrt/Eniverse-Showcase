@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import { enableScroll, disableScroll } from '../../actions';
 import animatedScrollTo from '../../utils/animatedScrollTo';
 
-class FullPage extends React.Component {
+class Desktop extends React.Component {
   constructor(props) {
     super(props);
     this.onResize = this.onResize.bind(this);
@@ -155,7 +155,7 @@ class FullPage extends React.Component {
   }
 }
 
-FullPage.propTypes = {
+Desktop.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
@@ -164,4 +164,4 @@ const mapDispatchToProps = dispatch => ({
   disableScrollPending: () => dispatch(disableScroll()),
 });
 
-export default connect(undefined, mapDispatchToProps)(withRouter(FullPage));
+export default connect(undefined, mapDispatchToProps)(withRouter(Desktop));
