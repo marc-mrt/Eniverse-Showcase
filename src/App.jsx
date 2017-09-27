@@ -8,7 +8,6 @@ import Partners from './components/pages/Partners';
 import Hero from './components/pages/Hero';
 import What from './components/pages/What';
 import Esports from './components/pages/Esports';
-import Contact from './components/pages/Contact';
 import ResponsiveScroll from './components/wrappers/ResponsiveScroll';
 
 const enhance = compose(
@@ -35,9 +34,6 @@ const App = enhance(() =>
       </Section>
       <Section name="#partners">
         <Partners />
-      </Section>
-      <Section name="#contact">
-        <Contact />
       </Section>
     </ResponsiveScroll>
   </Layout>,

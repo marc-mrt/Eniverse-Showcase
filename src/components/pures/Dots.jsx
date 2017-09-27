@@ -17,7 +17,6 @@ const Dots = () =>
     <Dot name="What we do" route="#what" />
     <Dot name="eSports" route="#esports" />
     <Dot name="Partners" route="#partners" />
-    <Dot name="Contact us" route="#contact" />
   </Wrapper>;
 
 export default Dots;

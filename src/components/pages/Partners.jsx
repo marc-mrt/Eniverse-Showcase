@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
 import Page from '../wrappers/Page';
+import Footer from '../pures/Footer';
+import markerIcon from '../../assets/maps/marker.png';
 import interback from '../../assets/images/interback-light.png';
 import spotify from '../../assets/partners/spotify.png';
 import uber from '../../assets/partners/uber.png';
@@ -22,20 +25,29 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
+const Container = styled.div`height: 30vh;`;
+
 const Item = styled.div`
-  transition: background-color 250ms linear;
   max-width: 100%;
   position: relative;
   margin-bottom: 0.75rem;
   .media: not(:last-child);
+`;
+
+const Partner = styled.img`
+  transition: all 250ms linear;
+  filter: grayscale(100%);
   &:hover {
-    .image {
-      transform: scale(1.1);
-    }
+    filter: grayscale(0%);
   }
 `;
 
 const Figure = styled.figure`transition: transform 250ms linear;`;
+
+const MapContainer = styled.div`
+  width: 100%;
+  height: 30vh;
+`;
 
 const title = 'Partners';
 const subtitle = 'These are some of the organisations that already trust us';
@@ -63,23 +75,81 @@ const data = [
   },
 ];
 
-const Partners = () =>
+const markers = [
+  {
+    position: {
+      lat: 48.856353,
+      lng: 2.344466,
+    },
+    key: 'Eniverse Paris',
+    defaultAnimation: 2,
+    icon: markerIcon,
+  },
+  {
+    position: {
+      lat: 51.50634,
+      lng: -0.12289,
+    },
+    key: 'Eniverse London',
+    defaultAnimation: 2,
+    icon: markerIcon,
+  },
+];
+const styles = [
+  { stylers: [{ saturation: -100 }] },
+  { featureType: 'water', stylers: [{ color: '#444444' }] },
+  { elementType: 'labels.text.fill', stylers: [{ color: '#2f508e' }] },
+  { featureType: 'water', elementType: 'labels.text.fill', stylers: [{ color: '#888888' }] },
+  {},
+];
+const defaultOptions = {
+  styles,
+  scrollwheel: false,
+};
+
+const GoogleMaps = withGoogleMap(props => (
+  <GoogleMap
+    ref={props.onMapLoad}
+    defaultZoom={5}
+    defaultOptions={defaultOptions}
+    defaultCenter={{ lat: 50.946154, lng: 0.968369 }}
+    onClick={props.onMapClick}
+  >
+    {markers.map(marker => <Marker {...marker} />)}
+  </GoogleMap>
+));
+
+const Partners = () => (
   <SuperPage title={title} subtitle={subtitle} background={interback} hasPadding>
     <Wrapper>
-      <div className="column is-10 is-offset-1">
-        <div className="columns is-multiline is-centered">
-          {data.map(item =>
-            <div className="column is-2" key={item.img.toString()}>
-              <Item>
-                <Figure className="image is-1by1">
-                  <img src={item.img} alt="Partner" />
-                </Figure>
-              </Item>
-            </div>,
-          )}
+      <Container className="columns is-multiline is-centered">
+        {data.map(item => (
+          <div className="column is-1" key={item.img.toString()}>
+            <Item>
+              <Figure className="image is-1by1">
+                <Partner src={item.img} alt="Partner" />
+              </Figure>
+            </Item>
+          </div>
+        ))}
+      </Container>
+      <div className="columns">
+        <div className="column">
+          <a className="button is-primary is-fullwidth" href="mailto:wyz@mail.com">
+            Send us an email!
+          </a>
+          <div className="content has-text-centered">
+            Hey Infos !
+          </div>
         </div>
+        <GoogleMaps
+          containerElement={<MapContainer className="column" />}
+          mapElement={<div style={{ height: '100%' }} />}
+        />
       </div>
+      <Footer />
     </Wrapper>
-  </SuperPage>;
+  </SuperPage>
+);
 
 export default Partners;
