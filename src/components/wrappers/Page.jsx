@@ -8,33 +8,21 @@ const Background = styled.div`
   background-size: cover;
 `;
 
-const Wrapper = styled.div`
-  position: relative;
-  text-align: center;
-  &::after {
-    content: '';
-    width: 40px;
-    height: 3px;
-    background-color: #2f508e;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    margin-top: 8px;
-  }
-`;
+const Wrapper = styled.div`position: relative;`;
 
 const Title = styled.h1`
   font-family: 'Anton', sans-serif;
   text-transform: uppercase;
   font-size: 2.5em;
   color: rgb(30, 53, 138);
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
+  border-bottom: 2px solid rgb(30, 53, 138);
 `;
 
 const Subtitle = styled.h5`
   font-size: 1em;
   font-weight: 500;
-  letter-spacing: .01em;
+  letter-spacing: 0.01em;
   color: #605f5f;
 `;
 
@@ -43,18 +31,14 @@ const Page = ({ children, title, subtitle, background, hasPadding }) => (
     bg={background || false}
     style={{ minHeight: '100vh', width: '100%', padding: hasPadding ? '3em' : false }}
   >
-    {title
-      ? <Wrapper>
-        <Title>
-          {title}
-        </Title>
-        {subtitle
-            ? <Subtitle>
-              {subtitle}
-            </Subtitle>
-            : false}
+    {title ? (
+      <Wrapper>
+        <Title>{title}</Title>
+        {subtitle ? <Subtitle>{subtitle}</Subtitle> : false}
       </Wrapper>
-      : false}
+    ) : (
+      false
+    )}
     {children}
   </Background>
 );
