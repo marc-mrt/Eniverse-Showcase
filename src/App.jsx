@@ -8,6 +8,7 @@ import Partners from './components/pages/Partners';
 import Hero from './components/pages/Hero';
 import What from './components/pages/What';
 import Esports from './components/pages/Esports';
+import Events from './components/pages/Events';
 import ResponsiveScroll from './components/wrappers/ResponsiveScroll';
 
 const enhance = compose(
@@ -20,7 +21,7 @@ const enhance = compose(
   }),
 );
 
-const App = enhance(() =>
+const App = enhance(() => (
   <Layout>
     <ResponsiveScroll>
       <Section name="#eniverse">
@@ -32,11 +33,14 @@ const App = enhance(() =>
       <Section name="#esports">
         <Esports />
       </Section>
+      <Section name="#events">
+        <Events />
+      </Section>
       <Section name="#partners">
         <Partners />
       </Section>
     </ResponsiveScroll>
-  </Layout>,
-);
+  </Layout>
+));
 
 export default withRouter(App);
