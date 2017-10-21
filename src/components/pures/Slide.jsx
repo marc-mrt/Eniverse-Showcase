@@ -3,12 +3,15 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Youtube from 'react-youtube';
 
-const Wrapper = styled.div`
-  height: 100%;
-  width: 100%;
-`;
+const Wrapper = styled.div``;
 
-const Box = styled.div`height: 40vh;`;
+const Box = styled.div`
+  height: auto;
+  box-shadow: 2px 2px 1px black;
+  color: grey;
+  display: block;
+  padding: 1em;
+`;
 
 const Content = styled(Box)`z-index: 10;`;
 
@@ -40,7 +43,7 @@ const opts = {
 
 const Slide = ({ title, desc, media }) => (
   <Wrapper className="columns">
-    <Content className="box column is-3">
+    <Content className="column is-4">
       <Title>{title}</Title>
       <Desc>{desc}</Desc>
     </Content>
