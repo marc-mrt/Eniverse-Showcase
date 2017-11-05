@@ -25,7 +25,7 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const Container = styled.div`height: 30vh;`;
+const Container = styled.div`min-height: 30vh;`;
 
 const Item = styled.div`
   max-width: 100%;

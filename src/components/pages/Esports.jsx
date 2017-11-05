@@ -187,7 +187,7 @@ const Esports = enhance(
               : false}
           </InputPanel>
           <Player
-            id="player"
+            id="esport"
             videoId="07Nr2YkjoFI"
             opts={opts}
             onEnd={playerEnd}
