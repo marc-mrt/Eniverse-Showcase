@@ -10,6 +10,8 @@ import Arrow from './Arrow';
 
 const Wrapper = styled.div`margin: 5em 20em;`;
 
+const WrapperMobile = styled.div`margin: 1em;`;
+
 const SlideWrapper = styled.div`margin-top: 5em;`;
 
 const ArrowDiv = styled.div`
@@ -52,7 +54,7 @@ const Slides = enhance(({ data, currentSlide, curNbSlides, maxNbSlides, goPrev, 
     {(matches) => {
       if (matches) {
         return (
-          <Wrapper className="columns">
+          <Wrapper className="columns is-centered">
             <ArrowDiv className="column">
               {curNbSlides > 1 ? (
                 <ArrowWrapper>
@@ -62,7 +64,7 @@ const Slides = enhance(({ data, currentSlide, curNbSlides, maxNbSlides, goPrev, 
                 false
               )}
             </ArrowDiv>
-            <SlideWrapper className="column is-8">
+            <SlideWrapper className="column is-8 has-text-centered">
               <Slide key={currentSlide.title} {...currentSlide} />
             </SlideWrapper>
             <ArrowDiv className="column">
@@ -77,7 +79,9 @@ const Slides = enhance(({ data, currentSlide, curNbSlides, maxNbSlides, goPrev, 
           </Wrapper>
         );
       }
-      return <Wrapper>{data.map(slide => <Slide key={slide.title} {...slide} />)}</Wrapper>;
+      return (
+        <WrapperMobile>{data.map(slide => <Slide key={slide.title} {...slide} />)}</WrapperMobile>
+      );
     }}
   </MediaQuery>
 ));

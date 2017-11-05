@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Page from '../wrappers/Page';
 import Slides from '../pures/Slides';
+import interback from '../../assets/images/interback-light.png';
 
 const SuperPage = styled(Page)`height: 100%;`;
 
@@ -36,7 +37,7 @@ const events = [
 ];
 
 const Events = () => (
-  <SuperPage title={title} subtitle={subtitle} hasPadding>
+  <SuperPage title={title} subtitle={subtitle} background={interback} hasPadding>
     <Slides data={events} />
   </SuperPage>
 );

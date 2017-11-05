@@ -7,14 +7,14 @@ import './Arrow.css';
 const Arrow = ({ type, action }) => (
   <button className={classNames('arrow', type.toString())} onClick={action}>
     <svg
-      width="60px"
-      height="80px"
+      width="90px"
+      height="180px"
       viewBox="0 0 50 80"
       xmlSpace="preserve"
     >
       <polyline
         fill="none"
-        stroke="#000000"
+        stroke="#1e358a"
         strokeWidth="1"
         strokeLinecap="round"
         strokeLinejoin="round"
