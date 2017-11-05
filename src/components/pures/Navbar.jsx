@@ -53,15 +53,15 @@ const Navbar = enhance(({ clickLogo, clickHamburger, clickCloseburger, isActive,
         click={clickCloseburger}
       />
       <NavLink
-        name={'Our partners'}
-        dest={'#partners'}
-        isActive={isActive('#partners')}
+        name={'Events'}
+        dest={'#events'}
+        isActive={isActive('#events')}
         click={clickCloseburger}
       />
       <NavLink
-        name={'Contact us'}
-        dest={'#contact'}
-        isActive={isActive('#contact')}
+        name={'Our partners'}
+        dest={'#partners'}
+        isActive={isActive('#partners')}
         click={clickCloseburger}
       />
     </div>
