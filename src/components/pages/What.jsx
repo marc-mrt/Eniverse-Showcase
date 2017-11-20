@@ -4,17 +4,17 @@ import styled from 'styled-components';
 
 import Page from '../wrappers/Page';
 
-const SuperPage = styled(Page)`
-  height: 100%;
+const SuperPage = styled(Page)`height: 100%;`;
+
+const Wrapper = styled.div`width: 100%;`;
+
+const Box = styled.div`
+  height: auto;
+  color: black;
+  display: block;
 `;
 
-const Wrapper = styled.div`
-  width: 100%;
-`;
-
-const Category = styled.div`
-  text-align: center;
-`;
+const Category = styled(Box)`text-align: center;`;
 
 const CaTitle = styled.h2`
   font-family: 'Anton', sans-serif;
@@ -22,7 +22,7 @@ const CaTitle = styled.h2`
   color: rgb(30, 53, 138);
   letter-spacing: 1px;
   text-transform: uppercase;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
   margin-top: 1em;
 `;
 
@@ -51,10 +51,10 @@ const Item = styled.div`
 `;
 
 const ItemTitle = styled.h3`
+  display: inline;
   font-family: 'Anton', sans-serif;
   color: black;
   letter-spacing: 1px;
-  margin-top: -10px;
   text-transform: uppercase;
   font-size: 1.5em;
 `;
@@ -62,28 +62,14 @@ const ItemTitle = styled.h3`
 const ItemDesc = styled.p`
   text-align: center;
   font-size: 1.2em;
-  margin-top: -10px;
   padding-left: 1em;
   padding-right: 1em;
   color: rgba(0, 0, 0, 0);
 `;
 
-const ItemFlag = styled.div`
-  height: 90px;
-  &::after {
-    content: "";
-    position: absolute;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 10px solid;
-    color: rgb(0, 0, 0);
-    left: calc(50% - 10px);
-    top: 90px;
-  }
-`;
-
 const ItemIcon = styled.i`
-  margin-top: .1em;
+  margin-top: 0.35em;
+  margin-right: 0.5em;
 `;
 
 const title = 'We connect brands with millenials';
@@ -138,36 +124,24 @@ const data = [
   },
 ];
 
-const What = () =>
+const What = () => (
   <SuperPage title={title} subtitle={subtitle} hasPadding>
-    <Wrapper id="what">
-      {data.map(category =>
-        <Category key={category.name}>
-          <CaTitle>
-            {category.name}
-          </CaTitle>
-          <div className="columns">
-            {category.items.map(item =>
-              <Item key={item.title.toString()} className="column is-one-third">
-                <ItemFlag className="column is-6 is-offset-3 tile notification is-black">
-                  <ItemIcon
-                    className={classNames('icon', 'is-large', 'fa', item.icon)}
-                    style={{
-                      marginLeft: 'auto',
-                      marginRight: 'auto',
-                      fontSize: '4em',
-                    }}
-                  />
-                </ItemFlag>
-                <ItemTitle className="itemTitle">{item.title}</ItemTitle>
-                <br />
-                <ItemDesc className="itemDesc">{item.subtitle}</ItemDesc>
-              </Item>,
-            )}
-          </div>
-        </Category>,
-      )}
+    <Wrapper id="what" className="columns is-centered" style={{ margin: '0' }}>
+      {data.map(category => (
+        <Category key={category.name} className="column is-4">
+          <CaTitle>{category.name}</CaTitle>
+          {category.items.map(item => (
+            <Item key={item.title.toString()}>
+              <ItemIcon className={classNames('icon', 'is-small', 'fa', item.icon)} />
+              <ItemTitle className="itemTitle">{item.title}</ItemTitle>
+              <br />
+              <ItemDesc className="itemDesc">{item.subtitle}</ItemDesc>
+            </Item>
+          ))}
+        </Category>
+      ))}
     </Wrapper>
-  </SuperPage>;
+  </SuperPage>
+);
 
 export default What;

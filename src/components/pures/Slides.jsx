@@ -8,11 +8,17 @@ import { compose, withState, withHandlers, withProps, lifecycle } from 'recompos
 import Slide from './Slide';
 import Arrow from './Arrow';
 
-const Wrapper = styled.div`margin: 5em 20em;`;
+const Wrapper = styled.div`
+  margin: 5em 20em;
+`;
 
-const WrapperMobile = styled.div`margin: 1em;`;
+const WrapperMobile = styled.div`
+  margin: 1em;
+`;
 
-const SlideWrapper = styled.div`margin-top: 5em;`;
+const SlideWrapper = styled.div`
+  margin-top: 5em;
+`;
 
 const ArrowDiv = styled.div`
   position: relative;

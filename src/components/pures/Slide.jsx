@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { zoomIn } from 'react-animations';
 import PropTypes from 'prop-types';
 import Youtube from 'react-youtube';
 import MediaQuery from 'react-responsive';
@@ -10,7 +11,8 @@ const Box = styled.div`
   height: auto;
   color: black;
   display: block;
-  background-image: linear-gradient(-45deg, rgba(0, 0, 0, 0.25) 50%, rgba(30, 53, 138, 0.25));
+  border-radius: 8px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1) 100%, transparent);
 `;
 
 const Content = styled(Box)`
@@ -26,7 +28,9 @@ const Title = styled.div`
   font-size: 1.5em;
 `;
 
-const Desc = styled.div`padding: 1em;`;
+const Desc = styled.div`
+  padding: 1em;
+`;
 
 const Media = styled(Box)`
   background-image: none;
@@ -36,6 +40,12 @@ const Media = styled(Box)`
 const FitTube = styled(Youtube)`
   width: 100%;
   height: 100%;
+`;
+
+const zoomInAnimation = keyframes`${zoomIn}`;
+
+const AnimatedSlide = styled(Wrapper)`
+  animation: 0.5s ${zoomInAnimation};
 `;
 
 const opts = {
@@ -55,7 +65,7 @@ const Slide = ({ title, desc, media }) => (
     {(matches) => {
       if (matches) {
         return (
-          <Wrapper className="columns">
+          <AnimatedSlide className="columns">
             <Content className="column is-4">
               <Title>{title}</Title>
               <Desc>{desc}</Desc>
@@ -63,7 +73,7 @@ const Slide = ({ title, desc, media }) => (
             <Media className="column" style={{ padding: '0', margin: '8px 0' }}>
               <FitTube id={media} videoId={media.slice(media.indexOf('?v=') + 3)} opts={opts} />
             </Media>
-          </Wrapper>
+          </AnimatedSlide>
         );
       }
       return (

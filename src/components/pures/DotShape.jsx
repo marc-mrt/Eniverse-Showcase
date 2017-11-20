@@ -8,10 +8,11 @@ const Svg = styled.svg`
   fill: ${props => (props.isActive ? '#959494' : '#393939')};
 `;
 
-const DotShape = ({ isActive, isHovered, isHome }) =>
+const DotShape = ({ isActive, isHovered, isHome }) => (
   <Svg height="6" width="6" scale={isHovered} isActive={isActive}>
     {isHome ? <rect y="2.5" width="5" height="2.5" /> : <circle r="2.5" cx="3" cy="3" />}
-  </Svg>;
+  </Svg>
+);
 
 DotShape.propTypes = {
   isActive: PropTypes.bool,

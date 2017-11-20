@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-
+import styled, { keyframes } from 'styled-components';
+import { fadeIn } from 'react-animations';
 import Page from '../wrappers/Page';
 import headback from '../../assets/images/headback.png';
 import logo from '../../assets/logo.png';
@@ -27,6 +27,12 @@ const TitleWrap = styled.div`
   width: inherit;
   margin-left: auto;
   margin-right: auto;
+`;
+
+const animationfadeIn = keyframes`${fadeIn}`;
+
+const AnimatedTitle = styled(TitleWrap)`
+  animation: 7.5s ${animationfadeIn};
 `;
 
 const Logo = styled.img`
@@ -64,25 +70,17 @@ const Hero = () => (
   <SuperPage id="hero">
     <Wrapper className="hero is-success is-fullheight">
       <div className="hero-body">
-        <TitleWrap className="is-hidden-mobile">
+        <AnimatedTitle className="is-hidden-mobile">
           <Logo src={logo} alt={title} />
           <TextBox>
-            <Title>
-              {title}
-            </Title>
-            <Subtitle>
-              {subtitle}
-            </Subtitle>
+            <Title>{title}</Title>
+            <Subtitle>{subtitle}</Subtitle>
           </TextBox>
-        </TitleWrap>
+        </AnimatedTitle>
         <TitleWrap className="is-hidden-tablet">
           <img src={logo} alt={title} />
-          <Title style={{ fontSize: '3em', display: 'block' }}>
-            {title}
-          </Title>
-          <Subtitle style={{ fontSize: '1em', margin: '0' }}>
-            {subtitle}
-          </Subtitle>
+          <Title style={{ fontSize: '3em', display: 'block' }}>{title}</Title>
+          <Subtitle style={{ fontSize: '1em', margin: '0' }}>{subtitle}</Subtitle>
         </TitleWrap>
       </div>
     </Wrapper>
