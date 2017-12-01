@@ -25,7 +25,9 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const Container = styled.div`min-height: 30vh;`;
+const Container = styled.div`
+  min-height: 30vh;
+`;
 
 const Item = styled.div`
   max-width: 100%;
@@ -42,7 +44,9 @@ const Partner = styled.img`
   }
 `;
 
-const Figure = styled.figure`transition: transform 250ms linear;`;
+const Figure = styled.figure`
+  transition: transform 250ms linear;
+`;
 
 const MapContainer = styled.div`
   width: 100%;
@@ -133,17 +137,15 @@ const Partners = () => (
           </div>
         ))}
       </Container>
-      <div className="columns">
-        <div className="column">
+      <div className="columns is-centered">
+        <div className="column is-one-third">
           <a className="button is-primary is-fullwidth" href="mailto:wyz@mail.com">
             Send us an email!
           </a>
-          <div className="content has-text-centered">
-            Hey Infos !
-          </div>
+          <div className="content has-text-centered">Hey Infos !</div>
         </div>
         <GoogleMaps
-          containerElement={<MapContainer className="column" />}
+          containerElement={<MapContainer className="column is-one-third" />}
           mapElement={<div style={{ height: '100%' }} />}
         />
       </div>

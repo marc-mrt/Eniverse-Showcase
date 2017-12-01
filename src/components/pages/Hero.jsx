@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { fadeIn } from 'react-animations';
+import MediaQuery from 'react-responsive';
+
 import Page from '../wrappers/Page';
 import headback from '../../assets/images/headback.png';
 import logo from '../../assets/logo.png';
@@ -19,8 +21,23 @@ const Wrapper = styled.section`
     rgba(0, 0, 0, 0.6),
     rgba(0, 0, 0, 0.8)
     ), url('${headback}') no-repeat center center;
-    background-attachment: fixed;
-    background-size: cover;
+  background-attachment: fixed;
+  background-size: cover;
+  z-index: -101;
+  position: relative;
+  overflow-y: hidden;
+`;
+
+const BgVideo = styled.video`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translateX(-50%) translateY(-50%);
 `;
 
 const TitleWrap = styled.div`
@@ -53,6 +70,7 @@ const Title = styled.h1`
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
   font-size: 6em;
+  color: white;
 `;
 
 const Subtitle = styled.h2`
@@ -61,6 +79,7 @@ const Subtitle = styled.h2`
   font-weight: 500;
   font-size: 1.25em;
   margin: 0 0 0 20em;
+  color: white;
 `;
 
 const title = 'eniverse';
@@ -68,7 +87,7 @@ const subtitle = 'into the next generation';
 
 const Hero = () => (
   <SuperPage id="hero">
-    <Wrapper className="hero is-success is-fullheight">
+    <Wrapper className="hero is-fullheight">
       <div className="hero-body">
         <AnimatedTitle className="is-hidden-mobile">
           <Logo src={logo} alt={title} />
@@ -83,6 +102,14 @@ const Hero = () => (
           <Subtitle style={{ fontSize: '1em', margin: '0' }}>{subtitle}</Subtitle>
         </TitleWrap>
       </div>
+      <MediaQuery minDeviceWidth={1224} values={{ deviceWidth: 1600 }}>
+        <BgVideo autoPlay loop id="video-background" muted playsInline>
+          <source
+            src="https://player.vimeo.com/external/158148793.hd.mp4?s=8e8741dbee251d5c35a759718d4b0976fbf38b6f&profile_id=119&oauth2_token_id=57447761"
+            type="video/mp4"
+          />
+        </BgVideo>
+      </MediaQuery>
     </Wrapper>
   </SuperPage>
 );
