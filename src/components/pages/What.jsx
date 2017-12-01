@@ -1,20 +1,21 @@
 import React from 'react';
 import classNames from 'classnames';
 import styled from 'styled-components';
+import MediaQuery from 'react-responsive';
 
 import Page from '../wrappers/Page';
 
-const SuperPage = styled(Page)`height: 100%;`;
-
-const Wrapper = styled.div`width: 100%;`;
-
-const Box = styled.div`
-  height: auto;
-  color: black;
-  display: block;
+const SuperPage = styled(Page)`
+  height: 100%;
 `;
 
-const Category = styled(Box)`text-align: center;`;
+const Wrapper = styled.div`
+  width: 100%;
+`;
+
+const Category = styled.div`
+  text-align: center;
+`;
 
 const CaTitle = styled.h2`
   font-family: 'Anton', sans-serif;
@@ -22,7 +23,7 @@ const CaTitle = styled.h2`
   color: rgb(30, 53, 138);
   letter-spacing: 1px;
   text-transform: uppercase;
-  margin-bottom: 0.5em;
+  margin-bottom: 2em;
   margin-top: 1em;
 `;
 
@@ -31,14 +32,6 @@ const Item = styled.div`
   &:hover {
     background-color: rgba(0, 0, 0, 0.05);
     transition: color 250ms linear;
-    .notification {
-      background-color: rgb(30, 53, 138);
-      transition: background-color 250ms linear;
-      &::after {
-        color: rgb(30, 53, 138);
-        transition: color 250ms linear;
-      }
-    }
     .itemTitle {
       color: rgb(30, 53, 138);
       transition: color 250ms linear;
@@ -51,7 +44,7 @@ const Item = styled.div`
 `;
 
 const ItemTitle = styled.h3`
-  display: inline;
+  display: ${props => (props.isInline ? 'inline' : 'block')};
   font-family: 'Anton', sans-serif;
   color: black;
   letter-spacing: 1px;
@@ -62,15 +55,9 @@ const ItemTitle = styled.h3`
 const ItemDesc = styled.p`
   text-align: center;
   font-size: 1.2em;
-  padding-left: 1em;
-  padding-right: 1em;
-  color: rgba(0, 0, 0, 0);
 `;
 
-const ItemIcon = styled.i`
-  margin-top: 0.35em;
-  margin-right: 0.5em;
-`;
+const ItemIcon = styled.i``;
 
 const title = 'We connect brands with millenials';
 const subtitle =
@@ -126,21 +113,61 @@ const data = [
 
 const What = () => (
   <SuperPage title={title} subtitle={subtitle} hasPadding>
-    <Wrapper id="what" className="columns is-centered" style={{ margin: '0' }}>
-      {data.map(category => (
-        <Category key={category.name} className="column is-4">
-          <CaTitle>{category.name}</CaTitle>
-          {category.items.map(item => (
-            <Item key={item.title.toString()}>
-              <ItemIcon className={classNames('icon', 'is-small', 'fa', item.icon)} />
-              <ItemTitle className="itemTitle">{item.title}</ItemTitle>
-              <br />
-              <ItemDesc className="itemDesc">{item.subtitle}</ItemDesc>
-            </Item>
-          ))}
-        </Category>
-      ))}
-    </Wrapper>
+    <MediaQuery minDeviceWidth={1224} values={{ deviceWidth: 1600 }}>
+      {(matches) => {
+        if (matches) {
+          return (
+            <Wrapper id="what" className="columns is-centered">
+              {data.map(category => (
+                <Category key={category.name} className="column is-5">
+                  <CaTitle>{category.name}</CaTitle>
+                  <div className="columns">
+                    {category.items.map(item => (
+                      <Item className="card column">
+                        <header className="card-header">
+                          <p className="card-header-title">
+                            <ItemTitle>{item.title}</ItemTitle>
+                          </p>
+                          <a className="card-header-icon">
+                            <div className="icon is-large">
+                              <ItemIcon className={classNames('fa', item.icon)} />
+                            </div>
+                          </a>
+                        </header>
+                        <div className="card-content">
+                          <div className="content">
+                            <ItemDesc className="itemDesc">{item.subtitle}</ItemDesc>
+                          </div>
+                        </div>
+                      </Item>
+                    ))}
+                  </div>
+                </Category>
+              ))}
+            </Wrapper>
+          );
+        }
+        return (
+          <Wrapper id="what" className="columns is-centered" style={{ margin: '0' }}>
+            {data.map(category => (
+              <Category key={category.name} className="column is-5">
+                <CaTitle>{category.name}</CaTitle>
+                {category.items.map(item => (
+                  <Item key={item.title.toString()}>
+                    <ItemIcon className={classNames('icon', 'is-small', 'fa', item.icon)} />
+                    <ItemTitle className="itemTitle">
+                      {item.title}
+                    </ItemTitle>
+                    <br />
+                    <ItemDesc className="itemDesc">{item.subtitle}</ItemDesc>
+                  </Item>
+                ))}
+              </Category>
+            ))}
+          </Wrapper>
+        );
+      }}
+    </MediaQuery>
   </SuperPage>
 );
 

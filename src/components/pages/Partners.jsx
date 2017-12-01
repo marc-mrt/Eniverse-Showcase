@@ -133,7 +133,7 @@ const Partners = () => (
           </div>
         ))}
       </Container>
-      <div className="columns" style={{ margin: '0 10em' }}>
+      <div className="columns">
         <div className="column">
           <a className="button is-primary is-fullwidth" href="mailto:wyz@mail.com">
             Send us an email!
