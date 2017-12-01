@@ -117,19 +117,19 @@ const What = () => (
       {(matches) => {
         if (matches) {
           return (
-            <Wrapper id="what" className="columns is-centered">
+            <Wrapper id="what" className="columns is-centered is-mobile">
               {data.map(category => (
-                <Category key={category.name} className="column is-5">
+                <Category key={category.name} className="column">
                   <CaTitle>{category.name}</CaTitle>
-                  <div className="columns">
+                  <div className="columns is-centered is-mobile">
                     {category.items.map(item => (
-                      <Item className="card column">
+                      <Item className="card column is-one-quarter">
                         <header className="card-header">
                           <p className="card-header-title">
                             <ItemTitle>{item.title}</ItemTitle>
                           </p>
                           <a className="card-header-icon">
-                            <div className="icon is-large">
+                            <div className="icon is-medium">
                               <ItemIcon className={classNames('fa', item.icon)} />
                             </div>
                           </a>
@@ -155,9 +155,7 @@ const What = () => (
                 {category.items.map(item => (
                   <Item key={item.title.toString()}>
                     <ItemIcon className={classNames('icon', 'is-small', 'fa', item.icon)} />
-                    <ItemTitle className="itemTitle">
-                      {item.title}
-                    </ItemTitle>
+                    <ItemTitle className="itemTitle">{item.title}</ItemTitle>
                     <br />
                     <ItemDesc className="itemDesc">{item.subtitle}</ItemDesc>
                   </Item>
