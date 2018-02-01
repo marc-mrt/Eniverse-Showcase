@@ -5,7 +5,8 @@
     "es6": true,
     "node": true
   },
-  "extends": ["airbnb"],
+  "plugins": ["flowtype"],
+  "extends": ["airbnb", "plugin:flowtype/recommended"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
