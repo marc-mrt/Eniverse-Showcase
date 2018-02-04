@@ -2,7 +2,6 @@
 
 import React from 'react';
 import PageSection from '../templates/PageSection';
-import interbackLight from '../../assets/images/interback-light.png';
 import * as content from '../../contents/Partners';
 import * as footerContent from '../../contents/Footer';
 import PartnersList from '../molecules/PartnersList';
@@ -11,9 +10,10 @@ import Footer from '../molecules/Footer';
 
 const Partners = () => (
   <PageSection
+    id="partners"
     title={content.title}
     subtitle={content.subtitle}
-    background={interbackLight}
+    background={content.background}
     hasPadding
   >
     <PartnersList partners={content.partners} />

@@ -8,9 +8,11 @@ import tf1 from '../assets/partners/tf1.png';
 import twitch from '../assets/partners/twitch.png';
 import deliveroo from '../assets/partners/deliveroo.png';
 import monster from '../assets/partners/monster.png';
+import interbackLight from '../assets/images/interback-light.png';
 
 export const title = 'Partners';
 export const subtitle = 'These are some of the organisations that already trust us';
+export const background = interbackLight;
 export const partners = [
   {
     img: spotify,
