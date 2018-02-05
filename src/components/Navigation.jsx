@@ -5,6 +5,7 @@ import { Events, scroller } from 'react-scroll';
 import { compose, withState, withHandlers, lifecycle, withProps } from 'recompose';
 import SideDots from './molecules/SideDots';
 import Navbar from './molecules/Navbar';
+import * as store from '../store';
 
 const pages = ['hero', 'what', 'esports', 'events', 'partners'];
 
@@ -88,8 +89,9 @@ const Navigation = ({
   isDesktop: boolean,
   scrollToPage: Function,
   scroll: { currentPage: number },
-}) =>
-  (isDesktop ? (
+}) => {
+  store.setDesktop(isDesktop);
+  return isDesktop ? (
     <div>
       <SideDots pages={pages} currentPage={scroll.currentPage} />
       {children}
@@ -99,6 +101,7 @@ const Navigation = ({
       <Navbar scrollToPage={scrollToPage} pages={pages} />
       {children}
     </div>
-  ));
+  );
+};
 
 export default composition(Navigation);
