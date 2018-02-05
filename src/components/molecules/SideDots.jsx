@@ -10,6 +10,7 @@ const SideDots = ({ pages, currentPage }: { pages: Array<string>, currentPage: n
       <Dot
         isTop={page === 'hero'}
         isActive={page === pages[currentPage]}
+        isBlock
         key={page}
       >
         {page}

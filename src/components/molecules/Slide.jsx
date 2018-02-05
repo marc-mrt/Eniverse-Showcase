@@ -2,6 +2,7 @@
 
 import React from 'react';
 import FitPlayer from '../atoms/FitPlayer';
+import { options } from '../../contents/Events';
 
 const Slide = ({
   title,
@@ -16,7 +17,7 @@ const Slide = ({
 }) => (
   <div className="card">
     <div className="card-image" style={{ padding: '.25em', height: desktop ? '40vh' : 'auto' }}>
-      <FitPlayer id={media} videoId={media.slice(media.indexOf('?v=') + 3)} />
+      <FitPlayer id={media} videoId={media.slice(media.indexOf('?v=') + 3)} opts={options} />
     </div>
     <div className="card-content">
       <div className="media">

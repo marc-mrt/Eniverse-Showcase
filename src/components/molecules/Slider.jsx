@@ -2,6 +2,8 @@
 
 import React from 'react';
 import Dot from './Dot';
+import Arrow from './Arrow';
+import SliderContainer from '../atoms/SliderContainer';
 
 const Slider = ({
   events,
@@ -16,15 +18,18 @@ const Slider = ({
   maxNbSlides: number,
   curNbSlides: number,
 }) => (
-  <div className="content has-text-centered">
+  <SliderContainer className="content has-text-centered">
     {events.map(event => (
       <Dot
         isActive={event.title === events[curNbSlides].title}
+        isTop={false}
+        isBlock={false}
         key={event.title}
-        style={{ display: 'inline' }}
       />
     ))}
-  </div>
+    {curNbSlides > 0 ? <Arrow type="left" onClick={goPrev} /> : false}
+    {curNbSlides < maxNbSlides ? <Arrow type="right" onClick={goNext} /> : false}
+  </SliderContainer>
 );
 
 export default Slider;

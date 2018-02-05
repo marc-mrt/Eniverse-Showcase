@@ -28,3 +28,14 @@ export const events = [
     media: 'https://www.youtube.com/watch?v=l8yh2g3rkww',
   },
 ];
+export const options = {
+  playerVars: {
+    rel: 0,
+    fs: 0,
+    controls: 0,
+    showinfo: 0,
+    enablejsapi: 1,
+    modestbranding: 1,
+    iv_load_policy: 3,
+  },
+};
