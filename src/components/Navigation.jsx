@@ -91,14 +91,13 @@ const Navigation = ({
   scroll: { currentPage: number },
 }) => {
   store.setDesktop(isDesktop);
-  return isDesktop ? (
+  return (
     <div>
-      <SideDots pages={pages} currentPage={scroll.currentPage} />
-      {children}
-    </div>
-  ) : (
-    <div>
-      <Navbar scrollToPage={scrollToPage} pages={pages} />
+      {isDesktop ? (
+        <SideDots pages={pages} currentPage={scroll.currentPage} />
+      ) : (
+        <Navbar scrollToPage={scrollToPage} pages={pages} />
+      )}
       {children}
     </div>
   );
