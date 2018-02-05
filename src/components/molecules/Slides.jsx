@@ -48,9 +48,11 @@ const Slides = ({
 }) =>
   (isDesktop ? (
     <div>
-      <SlidesContainer className="columns is-centered">
-        <Slide className="column is-one-third" {...currentSlide} desktop key={currentSlide.title} />
-      </SlidesContainer>
+      <div className="columns is-centered">
+        <SlidesContainer className="column is-half">
+          <Slide {...currentSlide} desktop key={currentSlide.title} />
+        </SlidesContainer>
+      </div>
       <Slider
         events={events}
         goPrev={goPrev}
