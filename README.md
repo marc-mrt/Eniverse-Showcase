@@ -1,4 +1,4 @@
-# ![ENIVERSE](https://raw.githubusercontent.com/marc-mrt/Eniverse-Showcase/master/src/assets/logo.png  "ENIVERSE") Eniverse
+# ![ENIVERSE](https://raw.githubusercontent.com/marc-mrt/Eniverse-Showcase/master/src/assets/logo-stroke.png  "ENIVERSE") Eniverse
 ---------
 
 This website's only purpose is to showcase the Eniverse organisation.
