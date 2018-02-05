@@ -41,14 +41,18 @@ const Navbar = ({
         <span />
       </div>
     </div>
-
     <div
       className={content.generateClassesForBurger(isActive)}
       style={content.generateStyleForBurger(isActive)}
     >
       <div className="navbar-start">
         {content.menus.map(menuItem => (
-          <a className="navbar-item" onClick={() => onClick(menuItem.name)} key={menuItem.name}>
+          <a
+            className="navbar-item"
+            onClick={() => onClick(menuItem.name)}
+            key={menuItem.name}
+            style={{ color: 'white' }}
+          >
             {menuItem.display}
           </a>
         ))}
