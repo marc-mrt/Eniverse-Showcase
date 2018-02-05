@@ -51,11 +51,19 @@ const Slides = ({
       <SlidesContainer className="columns is-centered">
         <Slide className="column is-one-third" {...currentSlide} desktop key={currentSlide.title} />
       </SlidesContainer>
-      <Slider events={events} goPrev={goPrev} goNext={goNext} maxNbSlides={maxNbSlides} curNbSlides={curNbSlides} />
+      <Slider
+        events={events}
+        goPrev={goPrev}
+        goNext={goNext}
+        maxNbSlides={maxNbSlides}
+        curNbSlides={curNbSlides}
+      />
     </div>
   ) : (
     <SlidesContainer className="columns is-centered">
-      {events.map(event => <Slide className="column" {...event} key={event.title} />)}
+      {events.map(event => (
+        <Slide className="column" {...event} desktop={false} key={event.title} />
+      ))}
     </SlidesContainer>
   ));
 
