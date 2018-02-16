@@ -1,3 +1,15 @@
 {
-  "extends": "airbnb"
+  "env": {
+    "browser": true,
+    "jest": true,
+    "es6": true,
+    "node": true
+  },
+  "plugins": ["flowtype"],
+  "extends": ["airbnb", "plugin:flowtype/recommended"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  }
 }
